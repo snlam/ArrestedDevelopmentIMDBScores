@@ -14,5 +14,15 @@ typeof(ADEpScores)
 
 myColors <- colorRampPalette(c("red", "yellow", "darkgreen"))
 
+# Heatmap
 heatmap.2(ADEpScores, scale = "column", xlab = "Season", ylab = "Episode Number", main = "Arrested Development IMDB Ratings", col = myColors(256), dendrogram = "none", Rowv = NA, Colv = NA, cellnote = ADEpScores, notecex = 0.7, notecol = "black", trace='none')
 legend(x = "left", legend = c("worst", "average", "best"), fill = c("red", "yellow", "darkgreen"))
+
+# Barplot
+ADEpScoresAvgs = c(mean(ADEpScores_df[, 1], na.rm = TRUE))
+for (i in 2:5) {
+  ADEpScoresAvgs <- append(ADEpScoresAvgs, mean(ADEpScores_df[, i], na.rm = TRUE))
+}
+barplot(ADEpScoresAvgs, xlab = "Season", ylab = "Episode Number", main = "Arrested Development IMDB Average Season Ratings", col = rainbow(5), ylim = c(0,10))
+# add values above bars
+text(x = seq_along(ADEpScoresAvgs), y = ADEpScoresAvgs, label = round(ADEpScoresAvgs, 1), cex = 1, pos = 3, col = "black") # pos = 3 puts label above
