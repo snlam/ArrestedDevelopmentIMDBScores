@@ -16,13 +16,13 @@ typeof(ADEpScores)
 colors = c(seq(6.7, 7.79, length = 25),seq(7.8,8.89, length = 26),seq(8.9,10, length = 25))
 my_palette <- colorRampPalette(c("red", "yellow", "darkgreen"))(75)
 
-heatmap.2(ADEpScores, xlab = "Season", ylab = "Episode Number", main = "Arrested Development IMDB Ratings", dendrogram = "none", Rowv = NA, Colv = NA, cellnote = ADEpScores, notecex = 0.7, notecol = "black", trace='none', symm=F,symkey=F,symbreaks=F, col = my_palette, las = 1, breaks = colors)
+heatmap.2(ADEpScores, xlab = "Season", ylab = "Episode Number", main = "Arrested Development IMDB Ratings", dendrogram = "none", Rowv = NA, Colv = NA, cellnote = ADEpScores, notecex = 0.7, notecol = "black", trace='none', symm=F,symkey=F,symbreaks=F, col = my_palette, breaks = colors)
 
 # Barplot
 ADEpScoresAvgs = c(mean(ADEpScores_df[, 1], na.rm = TRUE))
 for (i in 2:5) {
   ADEpScoresAvgs <- append(ADEpScoresAvgs, mean(ADEpScores_df[, i], na.rm = TRUE))
 }
-barplot(ADEpScoresAvgs, xlab = "Season", ylab = "IMDB Rating Out Of 10", main = "Arrested Development IMDB Average Season Ratings", col = rainbow(5), ylim = c(0,10))
+barplot(ADEpScoresAvgs, xlab = "Season", ylab = "IMDB Rating Out Of 10", main = "Arrested Development IMDB Average Season Ratings", col = rainbow(5), ylim = c(0,10), las = 1)
 # add values above bars
 text(x, ADEpScoresAvgs + 0.5, labels=as.character(round(ADEpScoresAvgs, 1)), fontweight = "bold")
