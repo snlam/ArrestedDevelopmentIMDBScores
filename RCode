@@ -12,11 +12,11 @@ ADEpScores <- as.matrix(ADEpScores)
 mode(ADEpScores) <- 'numeric'
 typeof(ADEpScores)
 
-myColors <- colorRampPalette(c("red", "yellow", "darkgreen"))
-
 # Heatmap
-heatmap.2(ADEpScores, scale = "column", xlab = "Season", ylab = "Episode Number", main = "Arrested Development IMDB Ratings", col = myColors(256), dendrogram = "none", Rowv = NA, Colv = NA, cellnote = ADEpScores, notecex = 0.7, notecol = "black", trace='none')
-legend(x = "left", legend = c("worst", "average", "best"), fill = c("red", "yellow", "darkgreen"))
+colors = c(seq(6.7, 7.79, length = 25),seq(7.8,8.89, length = 26),seq(8.9,10, length = 25))
+my_palette <- colorRampPalette(c("red", "yellow", "darkgreen"))(75)
+
+heatmap.2(ADEpScores, xlab = "Season", ylab = "Episode Number", main = "Arrested Development IMDB Ratings", dendrogram = "none", Rowv = NA, Colv = NA, cellnote = ADEpScores, notecex = 0.7, notecol = "black", trace='none', symm=F,symkey=F,symbreaks=F, col = my_palette, las = 1, breaks = colors)
 
 # Barplot
 ADEpScoresAvgs = c(mean(ADEpScores_df[, 1], na.rm = TRUE))
